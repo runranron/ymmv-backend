@@ -11,4 +11,4 @@ class Note(models.Model):
     category = models.CharField(max_length=20)
 
 class PersonalNote(Note):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)ex
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
