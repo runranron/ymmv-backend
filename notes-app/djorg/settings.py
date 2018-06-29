@@ -13,19 +13,10 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 from decouple import config
 
-is_prod = os.environ.get('IS_HEROKU', None)
-if is_prod:
-    print('is prod')
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    SECRET_KEY = config("SECRET_KEY")
-    DEBUG = config('DEBUG', default=False, cast=bool)
-    ALLOWED_HOSTS = config('ALLOWED_HOSTS')
-else:
-    print('not prod for some reason')
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    SECRET_KEY = config("SECRET_KEY")
-    DEBUG = config('DEBUG', default=False, cast=bool)
-    ALLOWED_HOSTS = ' '.split(config('ALLOWED_HOSTS'))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SECRET_KEY = config("SECRET_KEY")
+DEBUG = config('DEBUG', default=False, cast=bool)
+ALLOWED_HOSTS = config('ALLOWED_HOSTS')
 
 
 INSTALLED_APPS = [
