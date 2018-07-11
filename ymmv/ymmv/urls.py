@@ -1,4 +1,4 @@
-"""djorg URL Configuration
+"""ymmv URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -16,15 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework import routers
-from notes.api import NoteViewset, PersonalNoteViewset
+from foods.api import FoodViewSet, ReportViewSet
 from rest_framework.authtoken import views
 
 router = routers.DefaultRouter()
-router.register(r'notes', NoteViewset)
-router.register(r'personal_notes', PersonalNoteViewset)
+router.register(r'foods', FoodViewSet)
+router.register(r'reports', ReportViewSet)
+
+
 
 urlpatterns = [
-    re_path(r'^api-token-auth/', views.obtain_auth_token),
     path('admin/', admin.site.urls),
-    path(r'api/', include(router.urls)),
+    re_path(r'api/', include(router.urls)),
+    re_path(r'api/users/', include('rest_auth.urls')),
+    re_path(r'api/users/register/', include('rest_auth.registration.urls'))
 ]
