@@ -1,1 +1,1 @@
-web: gunicorn ymmv.wsgi.py
+web: gunicorn ymmv.wsgi
